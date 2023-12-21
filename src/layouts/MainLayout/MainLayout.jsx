@@ -8,7 +8,7 @@ export default function MainLayout() {
         <div className="relative">
             <div className="mx-auto max-w-7xl">
                 <Navbar></Navbar>
-                <div className="h-[calc(100vh-40vh)]">
+                <div className="min-h-[calc(100vh-40vh)]">
                     <Outlet></Outlet>
                 </div>
             </div>
