@@ -8,7 +8,44 @@ import { useEffect } from "react";
 
 export default function AddTask() {
 
-    
+    useEffect(() => {
+        // const routeName = location.pathname === '/' ? '' : "";
+
+        // document.title = `${routeName}`;
+        // console.log(document.title)
+    }, [])
+
+    const { user, loading, setLoading } = useAuth()
+    const axios = useAxios();
+
+    const handleAddTask = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = user.email
+        const taskTitle = form.Title.value;
+        const description = form.description.value;
+        const priority = form.priority.value;
+
+
+        const newTask = {
+            email,
+            taskTitle,
+            description,
+            priority
+        }
+        // Output
+        console.log(newTask)
+        axios.post("/addTasks", newTask)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.acknowledged) {
+                    toast.success('Successfully Added!')
+                } else {
+                    toast.error('Failed To Add!')
+                }
+
+            })
+    }
     return (
         <div className="py-7 flex flex-col md:flex-row ">
             <div className="md:w-1/2 space-y-6 flex flex-col md:flex-row justify-center items-center">
