@@ -35,7 +35,7 @@ export default function AddTask() {
         }
         // Output
         console.log(newTask)
-        axios.post("/addTasks", newTask)
+        axios.post("/addTask", newTask)
             .then(res => {
                 console.log(res.data)
                 if (res.data.acknowledged) {
