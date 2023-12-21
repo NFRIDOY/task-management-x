@@ -16,6 +16,22 @@ export default function Tasks() {
 
     
 
+    const { isPending, error, data: myPostedTasks } = useQuery({
+        queryKey: ['AddedTasks', user, postedTaskData],
+        queryFn: () =>
+            axios.get(`/tasks?email=${user.email}&myTask=${true}`).then(
+                (res) => {
+                    console.log(res.data)
+                    console.log(myPostedTasks)
+                    setPostedTaskData(res.data)
+                },
+
+            ),
+    })
+
+    // 'Loading...'
+    if (isPending) return <LoadingAnimations></LoadingAnimations>
+
     return (
         <div>
             <div className="mx-auto md:w-fit lg:w-auto">
