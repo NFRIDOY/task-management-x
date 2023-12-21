@@ -7,10 +7,10 @@ import { useEffect } from "react";
 export default function Registration() {
 
   useEffect(() => {
-    const routeName = location.pathname === '/Registration' ? 'Registration' : "";
+    // const routeName = location.pathname === '/Registration' ? 'Registration' : "";
 
-    document.title = `${routeName}`;
-    console.log(document.title)
+    // document.title = `${routeName}`;
+    // console.log(document.title)
   }, [])
 
   const { user, setUser, createUserEmailPass, updateUser, logOut } = useAuth()
@@ -40,16 +40,16 @@ export default function Registration() {
         toast.success("User Created")
         // console.log(user)
         updateUser(name, photoURL)
-        logOut()
-          .then(() => {
-            // Sign-out successful.
-            toast.success("Sign-out successful.")
-            navigate("/Login")
-          }).catch((error) => {
-            // An error happened.
-            toast.error("Sign-out Failes. Error")
-            console.log(error)
-          });
+        // logOut()
+        //   .then(() => {
+        //     // Sign-out successful.
+        //     toast.success("Sign-out successful.")
+        //     navigate("/Login")
+        //   }).catch((error) => {
+        //     // An error happened.
+        //     toast.error("Sign-out Failes. Error")
+        //     console.log(error)
+        //   });
 
       })
       .catch((error) => {

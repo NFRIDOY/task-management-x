@@ -14,10 +14,10 @@ export default function Login() {
     const axios = useAxios()
 
     useEffect(() => {
-        const routeName = location.pathname === '/Login' ? 'Login' : "";
+        // const routeName = location.pathname === '/Login' ? 'Login' : "";
 
-        document.title = `${routeName}`;
-        console.log(document.title)
+        // document.title = `${routeName}`;
+        // console.log(document.title)
     }, [])
 
     // get Access Token
