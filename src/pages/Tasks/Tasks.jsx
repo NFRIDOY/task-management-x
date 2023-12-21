@@ -14,7 +14,16 @@ export default function Tasks() {
     const { user } = useAuth()
 
 
-    
+    console.log(user)
+
+    const handleDelete = (id) => {
+
+        toast.success("Deleted task")
+        // alert
+
+        // axios.delete
+        
+    }
 
     const { isPending, error, data: myPostedTasks } = useQuery({
         queryKey: ['AddedTasks', user, postedTaskData],
