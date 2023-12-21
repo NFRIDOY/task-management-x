@@ -7,6 +7,8 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
 import AddTask from "../pages/AddTask/AddTask";
+import PrivateRoute from './PrivateRoute';
+import Tasks from "../pages/Tasks/Tasks";
 
 
 const router = createBrowserRouter([
@@ -21,12 +23,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "AddTask",
-                element: <AddTask></AddTask>,
+                element: <PrivateRoute><AddTask></AddTask></PrivateRoute>,
                 errorElement: <Error></Error>
             },
             {
-                path: "/",
-                element: <Home></Home>,
+                path: "/Tasks",
+                element: <PrivateRoute><Tasks></Tasks></PrivateRoute>,
                 errorElement: <Error></Error>
             },
             {
