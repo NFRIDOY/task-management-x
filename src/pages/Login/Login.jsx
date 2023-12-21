@@ -16,7 +16,7 @@ export default function Login() {
     useEffect(() => {
         const routeName = location.pathname === '/Login' ? 'Login' : "";
 
-        document.title = `Job Market X | ${routeName}`;
+        document.title = `${routeName}`;
         console.log(document.title)
     }, [])
 

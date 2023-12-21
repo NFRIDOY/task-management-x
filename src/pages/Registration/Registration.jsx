@@ -8,10 +8,10 @@ export default function Registration() {
 
   useEffect(() => {
     const routeName = location.pathname === '/Registration' ? 'Registration' : "";
-    
-    document.title = `Job Market X | ${routeName}`;
+
+    document.title = `${routeName}`;
     console.log(document.title)
-}, [])
+  }, [])
 
   const { user, setUser, createUserEmailPass, updateUser, logOut } = useAuth()
   const navigate = useNavigate()
@@ -36,27 +36,27 @@ export default function Registration() {
         // console.log("User Creds", user)
         console.log(user)
         setUser(user)
-        
+
         toast.success("User Created")
         // console.log(user)
         updateUser(name, photoURL)
         logOut()
-            .then(() => {
-                // Sign-out successful.
-                toast.success("Sign-out successful.")
-                navigate("/Login")
-            }).catch((error) => {
-                // An error happened.
-                toast.error("Sign-out Failes. Error")
-                console.log(error)
-            });
-        
+          .then(() => {
+            // Sign-out successful.
+            toast.success("Sign-out successful.")
+            navigate("/Login")
+          }).catch((error) => {
+            // An error happened.
+            toast.error("Sign-out Failes. Error")
+            console.log(error)
+          });
+
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(" Error on CreateUser ",errorCode)
-        console.log(" Error on CreateUser ",errorMessage)
+        console.log(" Error on CreateUser ", errorCode)
+        console.log(" Error on CreateUser ", errorMessage)
         toast.error("User Creation Error")
       });
 
