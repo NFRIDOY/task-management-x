@@ -7,11 +7,12 @@ export default function MainLayout() {
     return (
         <div className="relative">
             <div className="mx-auto max-w-7xl">
-
                 <Navbar></Navbar>
-                <Outlet></Outlet>
+                <div className="h-[calc(100vh-40vh)]">
+                    <Outlet></Outlet>
+                </div>
             </div>
-            <div className="relative bottom-0">
+            <div className="relative my-0">
                 <Footer></Footer>
             </div>
         </div>
