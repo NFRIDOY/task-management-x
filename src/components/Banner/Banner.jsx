@@ -22,7 +22,7 @@ const banner1 = <div className="relative">
 export default function Banner() {
     return (
         <div className="flex w-screen ">
-            <div className="w-fit">
+            <div className="w-fit hidden md:block">
                 <img className="h-96 w-[400px] rounded-lg" src="https://images.unsplash.com/photo-1586473219010-2ffc57b0d282?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
             </div>
             <div className="capitalize pl-10 flex flex-col  py-2">

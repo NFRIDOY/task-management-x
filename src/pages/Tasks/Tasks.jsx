@@ -121,7 +121,7 @@ export default function Tasks() {
         <div>
             <div className="mx-auto md:w-fit lg:w-auto">
 
-                <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                <div className="md:mx-auto mx-0 space-x-4 w-full md:w-fit grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                     {
                         postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete} handleDelete={handleDelete}> </TaskCard>)
                     }

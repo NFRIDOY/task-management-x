@@ -82,7 +82,7 @@ export default function Dashboard() {
                         </TabList>
 
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.status === "todo").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
@@ -90,7 +90,7 @@ export default function Dashboard() {
                         </TabPanel>
 
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.status === "OnGoing").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
@@ -98,7 +98,7 @@ export default function Dashboard() {
                         </TabPanel>
 
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.status === "Complete").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
@@ -116,21 +116,21 @@ export default function Dashboard() {
                         {/* priority */}
 
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.priority === "Low").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.priority === "Moderate").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                            <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                                 {
                                     postedTaskData?.filter(postedTask => postedTask?.priority === "High").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                                 }
@@ -150,42 +150,42 @@ export default function Dashboard() {
 
 
                 {/* <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.status === "todo").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.status === "OnGoing").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.status === "Complete").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.priority === "Low").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.priority === "Moderate").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                    <div className="md:mx-auto  md:w-fit space-x-4 grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.priority === "High").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                         }
