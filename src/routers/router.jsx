@@ -9,6 +9,7 @@ import Registration from "../pages/Registration/Registration";
 import AddTask from "../pages/AddTask/AddTask";
 import PrivateRoute from './PrivateRoute';
 import Tasks from "../pages/Tasks/Tasks";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -33,8 +34,8 @@ const router = createBrowserRouter([
                 errorElement: <Error></Error>
             },
             {
-                path: "/",
-                element: <Home></Home>,
+                path: "Dashboard",
+                element: <Dashboard></Dashboard>,
                 errorElement: <Error></Error>
             },
             {
