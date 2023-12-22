@@ -11,6 +11,7 @@ export default function Tasks() {
 
     const [postedTaskData, setPostedTaskData] = useState([])
     const [stateChanged, setStateChanged] = useState(false)
+    const [statusState, setStatusState] = useState("")
     const axios = useAxios()
     const { user } = useAuth()
 
@@ -35,35 +36,57 @@ export default function Tasks() {
                 setStatusState("OnGoing")
                 setStateChanged(!stateChanged)
             })
-        setStateChanged(!stateChanged)
+        // setStateChanged(!stateChanged)
     }
-
-    // const { isPending, error, data: myPostedTasks } = useQuery({
-    //     queryKey: ['AddedTasks', user, postedTaskData],
-    //     queryFn: () =>
-    //         // // axios.get(`/tasks?email=${user.email}&myTask=${true}`).then(
-    //         axios.get(`/tasks`).then(
-    //             (res) => {
-    //                 console.log(res.data)
-    //                 // console.log(myPostedTasks)
-    //                 setPostedTaskData(res.data)
-    //             },
-
-    //         ),
-    // })
-
-    useEffect(() => {
-        axios.get(`/tasks?email=${user.email}`)
+    const handleTodo = (id) => {
+        axios.put(`/tasks/${id}`, { status: "todo" })
+        toast.success("Task ")
             .then(res => {
                 console.log(res.data)
-                const taskData = res.data;
-                setPostedTaskData(taskData)
+                toast.success("todo")
+                setStatusState("todo")
+                setStateChanged(!stateChanged)
             })
-            .catch(err => {
-                console.log(err)
+        // setStateChanged(!stateChanged)
+    }
+    const handleComplete = (id) => {
+        axios.put(`/tasks/${id}`, { status: "Complete" })
+        toast.success("Task ")
+            .then(res => {
+                console.log(res.data)
+                toast.success("Complete")
+                setStatusState("Complete")
+                setStateChanged(!stateChanged)
             })
+        // setStateChanged(!stateChanged)
+    }
 
-    }, [stateChanged])
+    const { isPending, error, data: myPostedTasks } = useQuery({
+        queryKey: ['AddedTasks', user, postedTaskData, stateChanged, statusState],
+        queryFn: () =>
+            // // axios.get(`/tasks?email=${user.email}&myTask=${true}`).then(
+            axios.get(`/tasks?email=${user.email}`).then(
+                (res) => {
+                    console.log(res.data)
+                    // console.log(myPostedTasks)
+                    setPostedTaskData(res.data)
+                },
+
+            ),
+    })
+
+    // useEffect(() => {
+    //     axios.get(`/tasks?email=${user.email}`)
+    //         .then(res => {
+    //             console.log(res.data)
+    //             const taskData = res.data;
+    //             setPostedTaskData(taskData)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+
+    // }, [stateChanged])
 
     // axios.get(`/tasks?email=${user.email}`)
     //     .then(res => {
@@ -75,9 +98,9 @@ export default function Tasks() {
     //         console.log(err)
     //     })
 
-    console.log()
+    // console.log()
     // 'Loading...'
-    // if (isPending) return <LoadingAnimations></LoadingAnimations>
+    if (isPending) return <LoadingAnimations></LoadingAnimations>
 
     return (
         <div>
@@ -85,7 +108,7 @@ export default function Tasks() {
 
                 <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                     {
-                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing}> </TaskCard>)
+                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
                     }
                     {/* {
                         postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleDelete={handleDelete}></TaskCard>)

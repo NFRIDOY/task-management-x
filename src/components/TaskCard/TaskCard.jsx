@@ -5,11 +5,10 @@ import useAxios from "../../hooks/useAxios";
 import { useState } from "react";
 
 
-export default function TaskCard({ postedTask, handleDelete, handleOnGoing }) {
+export default function TaskCard({ postedTask, handleDelete, handleOnGoing, handleTodo, handleComplete, statusState }) {
 
   const { user } = useAuth()
   const axios = useAxios()
-  const [statusState, setStatusState] = useState("")
 
   const {
     _id,
@@ -20,7 +19,8 @@ export default function TaskCard({ postedTask, handleDelete, handleOnGoing }) {
     priority,
     status } = postedTask;
 
-  
+  const [statusStateCard, setStatusStateCard] = useState(status)
+
 
 
   return (
@@ -33,7 +33,8 @@ export default function TaskCard({ postedTask, handleDelete, handleOnGoing }) {
           </div>
           <div className="flex justify-between border-b-2 pb-3">
             <h2 className="card-title font-bold text-3xl">{taskTitle}</h2>
-            <h2 className="card-title uppercase text-info font-extrabold">{status}</h2>
+            <h2 className="card-title uppercase text-info font-extrabold">{statusStateCard}</h2>
+            {/* <h2 className="card-title uppercase text-info font-extrabold">{status}</h2> */}
           </div>
           <div className="grid grid-cols-3">
             {/* <p className="text-white justify-center col-span-2 pr-0 border-r-2 h-full ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos delectus atque dolorum necessitatibus! Veniam iure doloribus eum unde quisquam debitis, officiis aliquid aliquam quam maiores dolorem? Labore, aspernatur maxime. Similique laboriosam iure eligendi suscipit ab velit, tempora cupiditate consectetur odit quibusdam. Odio animi debitis aliquid, vero ex dolorem sunt non doloribus temporibus eius id aut obcaecati eum ea repudiandae quasi perferendis laudantium velit deserunt minima facere. Repellat nihil sed aut odit autem repudiandae ea deserunt ullam quidem hic cum dolor vel adipisci aspernatur doloremque delectus, tempore veniam reprehenderit? Accusantium, nisi. Perspiciatis possimus sit corporis inventore repellendus debitis. Tenetur, inventore delectus.</p> */}
@@ -54,8 +55,24 @@ export default function TaskCard({ postedTask, handleDelete, handleOnGoing }) {
                 <button className="btn btn-sm w-full btn-primary  text-white ">Delete</button>
                 {/* </div>
             <div className="flex flex-col gap-4"> */}
-                <button className="btn btn-sm w-full btn-success text-white" onClick={() => handleOnGoing(_id)}>On Going</button>
-                <button className="btn btn-sm w-full btn-primary bg-red-700 border-none text-white hover:bg-red-800 ">Complete</button>
+                {
+                  status === "OnGoing" ? <button className="btn btn-sm w-full btn-success text-white" onClick={() => handleTodo(_id)}>
+                    To-Do
+                  </button> : status === "todo" ? <button className="btn btn-sm w-full btn-success text-white" onClick={() => handleOnGoing(_id)}>
+                    On Going
+                  </button> : status === "Complete" ? <button className="btn btn-sm w-full btn-success text-white" onClick={() => handleTodo(_id)}>
+                    To-Do
+                  </button> : null
+                }
+
+                {
+                  status === "Complete" ? <button className="btn btn-sm w-full btn-primary bg-neutral border-none text-white hover:bg-red-800 disabled">
+                    Complete
+                  </button> : <button className="btn btn-sm w-full btn-primary bg-red-700 border-none text-white hover:bg-red-800 " onClick={() => handleComplete(_id)}>
+                    Complete
+                  </button>
+                }
+                {/* <button className="btn btn-sm w-full btn-primary bg-red-700 border-none text-white hover:bg-red-800 ">Complete</button> */}
               </div>
 
             </div>
