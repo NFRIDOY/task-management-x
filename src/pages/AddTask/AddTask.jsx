@@ -24,6 +24,7 @@ export default function AddTask() {
         const email = user.email
         const taskTitle = form.Title.value;
         const description = form.description.value;
+        const deadline = form.deadline.value;
         const priority = form.priority.value;
 
 
@@ -31,7 +32,9 @@ export default function AddTask() {
             email,
             taskTitle,
             description,
-            priority
+            deadline,
+            priority,
+            status: "todo"
         }
         // Output
         console.log(newTask)
@@ -66,10 +69,10 @@ export default function AddTask() {
                         <textarea name="description" id="description" cols="30" rows="3" className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 " placeholder="Description" required=""></textarea>
                         {/* <input type="text" name="description" id="description" className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 " placeholder="Type" required="" /> */}
                     </div>
-                    {/* <div className="w-full">
+                    <div className="w-full">
                         <label htmlFor="deadline" className="block mb-2 text-sm font-medium text-gray-900 ">Deadline</label>
                         <input type="date" name="deadline" id="deadline" className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 " placeholder="Type" required="" />
-                    </div> */}
+                    </div>
                     <div className="w-full">
                         <label htmlFor="priority" className="block mb-2 text-sm font-medium text-gray-900 capitalize">priority</label>
                         {/* <input type="text" name="yyyyy" id="yyyyy" className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 " placeholder="Type" required="" /> */}
