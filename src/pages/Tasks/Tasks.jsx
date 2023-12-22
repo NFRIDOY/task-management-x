@@ -12,6 +12,7 @@ export default function Tasks() {
     const [postedTaskData, setPostedTaskData] = useState([])
     const [stateChanged, setStateChanged] = useState(false)
     const [statusState, setStatusState] = useState("")
+    const [taskData, setTaskData] = useState([])
     const axios = useAxios()
     const { user } = useAuth()
 
@@ -20,7 +21,21 @@ export default function Tasks() {
 
     const handleDelete = (id) => {
 
-        toast.success("Deleted task")
+        axios.delete(`/tasks/${id}?email=${user.email}`)
+            .then((res) => {
+                console.log(res?.data)
+                console.log(postedTaskData)
+                if (res?.data?.deletedCount) {
+                    toast.success("Deleted")
+                    const remaining = postedTaskData.filter(tasks => tasks._id !== id)
+                    setPostedTaskData(...remaining)
+                } else {
+                    toast.error("Delete Failed")
+                }
+                // setPostedJobData(res.data)
+            })
+
+        // toast.success("Deleted task")
         // alert
 
         // axios.delete
@@ -108,7 +123,7 @@ export default function Tasks() {
 
                 <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                     {
-                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete} handleDelete={handleDelete}> </TaskCard>)
                     }
                     {/* {
                         postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleDelete={handleDelete}></TaskCard>)

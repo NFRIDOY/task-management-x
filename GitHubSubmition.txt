@@ -1,0 +1,3 @@
+Live Link: https://task-management-x.web.app
+Github Client Link: https://github.com/NFRIDOY/task-management-x
+Github Server Link: https://github.com/NFRIDOY/task-management-x-server
