@@ -10,6 +10,7 @@ import LoadingAnimations from './../../components/LoadingAnimations/LoadingAnima
 export default function Tasks() {
 
     const [postedTaskData, setPostedTaskData] = useState([])
+    const [stateChanged, setStateChanged] = useState(false)
     const axios = useAxios()
     const { user } = useAuth()
 
@@ -23,6 +24,18 @@ export default function Tasks() {
 
         // axios.delete
 
+    }
+
+    const handleOnGoing = (id) => {
+        axios.put(`/tasks/${id}`, { status: "OnGoing" })
+        toast.success("Task ")
+            .then(res => {
+                console.log(res.data)
+                toast.success("OnGoing")
+                setStatusState("OnGoing")
+                setStateChanged(!stateChanged)
+            })
+        setStateChanged(!stateChanged)
     }
 
     // const { isPending, error, data: myPostedTasks } = useQuery({
@@ -49,8 +62,8 @@ export default function Tasks() {
             .catch(err => {
                 console.log(err)
             })
-            
-    }, [])
+
+    }, [stateChanged])
 
     // axios.get(`/tasks?email=${user.email}`)
     //     .then(res => {
@@ -62,7 +75,7 @@ export default function Tasks() {
     //         console.log(err)
     //     })
 
-        console.log()
+    console.log()
     // 'Loading...'
     // if (isPending) return <LoadingAnimations></LoadingAnimations>
 
@@ -72,7 +85,7 @@ export default function Tasks() {
 
                 <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                     {
-                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask}>{postedTask?.taskTitle}</TaskCard>)
+                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing}> </TaskCard>)
                     }
                     {/* {
                         postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleDelete={handleDelete}></TaskCard>)

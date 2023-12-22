@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
+import { useState } from "react";
 
 
-export default function TaskCard({ postedTask, handleDelete }) {
+export default function TaskCard({ postedTask, handleDelete, handleOnGoing }) {
 
   const { user } = useAuth()
   const axios = useAxios()
+  const [statusState, setStatusState] = useState("")
 
   const {
     _id,
@@ -17,6 +19,8 @@ export default function TaskCard({ postedTask, handleDelete }) {
     deadline,
     priority,
     status } = postedTask;
+
+  
 
 
   return (
@@ -36,8 +40,8 @@ export default function TaskCard({ postedTask, handleDelete }) {
             <p className="text-white justify-center col-span-2 pr-0 border-r-2 h-full ">
               {
                 deadline && <div className="border-b-2 pb-2 flex justify-center">
-                <h2 className="card-title text-sm bg-warning text-white w-fit rounded-md py-1 px-2 "><span> Deadline:</span>{deadline}</h2>
-              </div>}
+                  <h2 className="card-title text-sm bg-warning text-white w-fit rounded-md py-1 px-2 "><span> Deadline:</span>{deadline}</h2>
+                </div>}
 
               <p>
                 {description}
@@ -50,7 +54,7 @@ export default function TaskCard({ postedTask, handleDelete }) {
                 <button className="btn btn-sm w-full btn-primary  text-white ">Delete</button>
                 {/* </div>
             <div className="flex flex-col gap-4"> */}
-                <button className="btn btn-sm w-full btn-success  ">On Going</button>
+                <button className="btn btn-sm w-full btn-success text-white" onClick={() => handleOnGoing(_id)}>On Going</button>
                 <button className="btn btn-sm w-full btn-primary bg-red-700 border-none text-white hover:bg-red-800 ">Complete</button>
               </div>
 
