@@ -67,15 +67,89 @@ export default function Dashboard() {
 
     return (
         <div>
-            Dashboard
             <Tabs>
                 <TabList>
+                    <Tab>Status</Tab>
+                    <Tab>Priority</Tab>
+                </TabList>
+                <TabPanel>
+                    {/* status */}
+                    <Tabs>
+                        <TabList>
+                            <Tab>To-Do</Tab>
+                            <Tab>OnGoing</Tab>
+                            <Tab>Complete</Tab>
+                        </TabList>
+
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.status === "todo").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.status === "OnGoing").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.status === "Complete").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+                    </Tabs>
+                </TabPanel>
+                <TabPanel>
+                    <Tabs>
+                        <TabList>
+                            <Tab>Low</Tab>
+                            <Tab>Moderate</Tab>
+                            <Tab>High</Tab>
+                        </TabList>
+                        {/* priority */}
+
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.priority === "Low").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.priority === "Moderate").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+                        <TabPanel>
+                            <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                                {
+                                    postedTaskData?.filter(postedTask => postedTask?.priority === "High").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                                }
+                            </div>
+                        </TabPanel>
+                    </Tabs>
+                </TabPanel>
+
+                {/* <TabList>
                     <Tab>To-Do</Tab>
                     <Tab>OnGoing</Tab>
                     <Tab>Complete</Tab>
-                </TabList>
+                    <Tab>Low</Tab>
+                    <Tab>Moderate</Tab>
+                    <Tab>High</Tab>
+                </TabList> */}
 
-                <TabPanel>
+
+                {/* <TabPanel>
                     <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                         {
                             postedTaskData?.filter(postedTask => postedTask?.status === "todo").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
@@ -96,6 +170,27 @@ export default function Dashboard() {
                         }
                     </div>
                 </TabPanel>
+                <TabPanel>
+                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                        {
+                            postedTaskData?.filter(postedTask => postedTask?.priority === "Low").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                        }
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                        {
+                            postedTaskData?.filter(postedTask => postedTask?.priority === "Moderate").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                        }
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
+                        {
+                            postedTaskData?.filter(postedTask => postedTask?.priority === "High").map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleOnGoing={handleOnGoing} statusState={statusState} handleTodo={handleTodo} handleComplete={handleComplete}> </TaskCard>)
+                        }
+                    </div>
+                </TabPanel> */}
             </Tabs >
         </div >
     )
