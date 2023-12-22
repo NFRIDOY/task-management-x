@@ -15,6 +15,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: "/",
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
                 errorElement: <Error></Error>
             },
             {
-                path: "/Tasks",
+                path: "Tasks",
                 element: <PrivateRoute><Tasks></Tasks></PrivateRoute>,
                 errorElement: <Error></Error>
             },

@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import LoadingAnimations from "../LoadingAnimations/LoadingAnimations";
 import swal from "sweetalert";
 import TaskCard from "../../components/TaskCard/TaskCard";
 import toast from "react-hot-toast";
+import LoadingAnimations from './../../components/LoadingAnimations/LoadingAnimations';
 
 export default function Tasks() {
 
@@ -22,33 +22,61 @@ export default function Tasks() {
         // alert
 
         // axios.delete
-        
+
     }
 
-    const { isPending, error, data: myPostedTasks } = useQuery({
-        queryKey: ['AddedTasks', user, postedTaskData],
-        queryFn: () =>
-            axios.get(`/tasks?email=${user.email}&myTask=${true}`).then(
-                (res) => {
-                    console.log(res.data)
-                    console.log(myPostedTasks)
-                    setPostedTaskData(res.data)
-                },
+    // const { isPending, error, data: myPostedTasks } = useQuery({
+    //     queryKey: ['AddedTasks', user, postedTaskData],
+    //     queryFn: () =>
+    //         // // axios.get(`/tasks?email=${user.email}&myTask=${true}`).then(
+    //         axios.get(`/tasks`).then(
+    //             (res) => {
+    //                 console.log(res.data)
+    //                 // console.log(myPostedTasks)
+    //                 setPostedTaskData(res.data)
+    //             },
 
-            ),
-    })
+    //         ),
+    // })
 
+    useEffect(() => {
+        axios.get(`/tasks?email=${user.email}`)
+            .then(res => {
+                console.log(res.data)
+                const taskData = res.data;
+                setPostedTaskData(taskData)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            
+    }, [])
+
+    // axios.get(`/tasks?email=${user.email}`)
+    //     .then(res => {
+    //         // console.log(res.data)
+    //         // const taskData = res.data;
+    //         setPostedTaskData(res.data)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+
+        console.log()
     // 'Loading...'
-    if (isPending) return <LoadingAnimations></LoadingAnimations>
+    // if (isPending) return <LoadingAnimations></LoadingAnimations>
 
     return (
         <div>
             <div className="mx-auto md:w-fit lg:w-auto">
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-flow-row-dense gap-y-8 py-10">
+                <div className="grid grid-cols-1  md:grid-cols-3 md:grid-flow-row-dense gap-y-8 py-10">
                     {
-                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleDelete={handleDelete}></TaskCard>)
+                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask}>{postedTask?.taskTitle}</TaskCard>)
                     }
+                    {/* {
+                        postedTaskData?.map(postedTask => <TaskCard key={postedTask._id} postedTask={postedTask} handleDelete={handleDelete}></TaskCard>)
+                    } */}
                 </div>
             </div>
         </div>
